@@ -3,6 +3,7 @@ const nameInput = document.querySelector("#name");
 const ageInput = document.querySelector("#age");
 const colorInput = document.querySelector("#color");
 const cardContainer = document.querySelector("#cardContainer");
+const clearCard = document.querySelector("#clearBtn");
 
 
 form.addEventListener("submit", (event)=>{
@@ -30,3 +31,7 @@ form.addEventListener("submit", (event)=>{
     cardContainer.append(card);
      
 });
+
+clearCard.addEventListener("click", ()=>{
+    cardContainer.innerHTML = "";
+})
