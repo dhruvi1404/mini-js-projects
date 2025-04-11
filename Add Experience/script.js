@@ -53,3 +53,32 @@ addBtn.addEventListener("click", () => {
   
   block.appendChild(removeBtn);
 });
+
+// create save all button
+
+const saveAll = document.createElement('button');
+saveAll.textContent = "Save All";
+document.body.appendChild(saveAll);
+
+saveAll.addEventListener("click",()=>{
+    const allExpValue = [];
+    let allExpBlocks = document.querySelectorAll('.exp-block');
+
+    allExpBlocks.forEach(block => {
+        let inputs = block.querySelectorAll('input, textarea');
+
+        const experience = {
+            jobTitle: inputs[0].value,
+            companyName: inputs[1].value,
+            duration: inputs[2].value,
+            descLabel: inputs[3].value
+        };
+        
+        allExpValue.push(experience);
+});
+
+    console.log("All Expereince data : " , allExpValue);
+
+
+    
+});
