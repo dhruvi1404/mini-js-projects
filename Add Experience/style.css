@@ -1,0 +1,19 @@
+.exp-block {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  .exp-block label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .exp-block input,
+  .exp-block textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+  
