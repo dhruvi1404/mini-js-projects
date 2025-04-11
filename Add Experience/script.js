@@ -43,4 +43,12 @@ addBtn.addEventListener("click", () => {
   block.appendChild(descLabel);
 
   expCtr.appendChild(block);
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove";
+ 
+  removeBtn.addEventListener("click", ()=>{
+    block.remove();
+  })
+  block.appendChild(removeBtn);
 });
