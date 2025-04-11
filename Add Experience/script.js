@@ -60,8 +60,18 @@ const saveAll = document.createElement('button');
 saveAll.textContent = "Save All";
 document.body.appendChild(saveAll);
 
+//create download button
+const downloadBtn = document.createElement('button');
+downloadBtn.textContent = "Download as JSON";
+document.body.appendChild(downloadBtn);
+
 saveAll.addEventListener("click",()=>{
-    const allExpValue = [];
+
+    const previewContainer = document.querySelector("#preview-container");
+
+    // Clear old preview first
+    previewContainer.innerHTML = "";
+
     let allExpBlocks = document.querySelectorAll('.exp-block');
 
     allExpBlocks.forEach(block => {
@@ -71,14 +81,64 @@ saveAll.addEventListener("click",()=>{
             jobTitle: inputs[0].value,
             companyName: inputs[1].value,
             duration: inputs[2].value,
-            descLabel: inputs[3].value
+            description: inputs[3].value
         };
         
-        allExpValue.push(experience);
+        //create Display block
+        const previewBlock = document.createElement('div');
+        previewBlock.classList.add("preview-block");
+
+        previewBlock.innerHTML = `
+        <h3>${experience.jobTitle}</h3>
+        <p><strong>Company:</strong> ${experience.companyName}</p>
+        <p><strong>Duration:</strong> ${experience.duration}</p>
+        <p><strong>Description:</strong> ${experience.description}</p>
+      `;
+  
+        previewContainer.appendChild(previewBlock);
+       
 });
 
-    console.log("All Expereince data : " , allExpValue);
+         
 
 
     
+});
+
+
+downloadBtn.addEventListener("click",()=>{
+
+
+    let allExpBlocks = document.querySelectorAll('.exp-block');
+    const allExpValue = [];
+
+    allExpBlocks.forEach(block => {
+        let inputs = block.querySelectorAll('input, textarea');
+
+        const experience = {
+            jobTitle: inputs[0].value,
+            companyName: inputs[1].value,
+            duration: inputs[2].value,
+            description: inputs[3].value
+        };
+        
+        allExpValue.push(experience);
+       
+});   
+      // Step 1: Convert to JSON
+  const jsonData = JSON.stringify(allExpValue, null, 2);
+
+  // Step 2: Create a blob (file-like object in memory)
+  const blob = new Blob([jsonData], { type: "application/json" });
+
+  // Step 3: Create download link
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "resume_experience.json";
+  a.click(); // this triggers the download
+
+  // Step 4: Optional cleanup
+  URL.revokeObjectURL(url); // releases memory
+
 });
