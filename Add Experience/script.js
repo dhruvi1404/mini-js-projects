@@ -65,6 +65,12 @@ const downloadBtn = document.createElement('button');
 downloadBtn.textContent = "Download as JSON";
 document.body.appendChild(downloadBtn);
 
+//create Export as PDF button
+const exportPDF = document.createElement('button');
+exportPDF.textContent = "Export as PDF";
+document.body.appendChild(exportPDF);
+
+
 saveAll.addEventListener("click",()=>{
 
     const previewContainer = document.querySelector("#preview-container");
@@ -142,3 +148,8 @@ downloadBtn.addEventListener("click",()=>{
   URL.revokeObjectURL(url); // releases memory
 
 });
+
+exportPDF.addEventListener("click",()=>{
+
+});
+
